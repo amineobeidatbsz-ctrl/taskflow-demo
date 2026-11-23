@@ -17,6 +17,10 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
     return;
   }
   const token = authHeader.substring('Bearer '.length);
+  // Improved debug logging to help trace auth issues in production
+  // Note: This logs the raw token for correlation with backend logs.
+  // eslint-disable-next-line no-console
+  console.log(`[auth] incoming bearer token=${token}`);
   const user = store.getUserByToken(token);
   if (!user) {
     res.status(401).json({ error: 'Unauthorized' });
