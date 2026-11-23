@@ -8,11 +8,17 @@ export const tasksRouter = Router();
 // All routes under /tasks require auth
 tasksRouter.use(authMiddleware);
 
-// List tasks (no pagination yet — to be added in PR A)
+// List tasks with simple pagination
 tasksRouter.get('/', (req, res) => {
   const user = req.user!;
-  const tasks = store.listTasksByUser(user.id);
-  res.json({ data: tasks });
+  const all = store.listTasksByUser(user.id);
+  const page = Math.max(1, parseInt(String(req.query.page ?? '1'), 10) || 1);
+  const limit = Math.max(1, Math.min(100, parseInt(String(req.query.limit ?? '10'), 10) || 10));
+  const start = (page - 1) * limit;
+  const data = all.slice(start, start + limit);
+  const total = all.length;
+  const totalPages = Math.max(1, Math.ceil(total / limit));
+  res.json({ data, page, limit, total, totalPages });
 });
 
 tasksRouter.post('/', (req, res) => {
