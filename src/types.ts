@@ -9,6 +9,7 @@ export interface Task {
   id: string;
   userId: string;
   title: string;
+  tags?: string[];
   description?: string;
   dueDate?: string; // ISO string
   completed: boolean;
