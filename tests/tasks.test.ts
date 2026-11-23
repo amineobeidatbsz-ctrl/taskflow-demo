@@ -21,13 +21,13 @@ describe('tasks CRUD', () => {
     const create = await request(app)
       .post('/tasks')
       .set(auth)
-      .send({ title: 'Write tests', description: 'Add unit tests' })
+    .send({ name: 'Write tests', description: 'Add unit tests' })
       .expect(201);
 
     expect(create.body).toEqual(
       expect.objectContaining({
         id: expect.any(String),
-        title: 'Write tests',
+      name: 'Write tests',
         description: 'Add unit tests',
         completed: false
       })
@@ -36,7 +36,7 @@ describe('tasks CRUD', () => {
 
     const list = await request(app).get('/tasks').set(auth).expect(200);
     expect(list.body.data).toEqual(
-      expect.arrayContaining([expect.objectContaining({ id, title: 'Write tests' })])
+    expect.arrayContaining([expect.objectContaining({ id, name: 'Write tests' })])
     );
 
     const detail = await request(app).get(`/tasks/${id}`).set(auth).expect(200);

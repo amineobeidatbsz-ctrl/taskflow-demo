@@ -41,7 +41,7 @@ Base URL: http://localhost:3000
 Authenticated routes require header: `Authorization: Bearer <token>`
 
 - GET `/tasks` — list tasks for the authenticated user
-- POST `/tasks` — create task: `{ title, description?, dueDate?, completed? }`
+- POST `/tasks` — create task: `{ name, description?, dueDate?, completed? }`
 - GET `/tasks/:id` — get a task
 - PUT `/tasks/:id` — update any subset of fields
 - DELETE `/tasks/:id` — delete a task

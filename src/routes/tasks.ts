@@ -23,7 +23,7 @@ tasksRouter.post('/', (req, res) => {
   }
   const user = req.user!;
   const created = store.createTask(user.id, {
-    title: parse.data.title,
+    name: parse.data.name,
     description: parse.data.description,
     dueDate: parse.data.dueDate,
     completed: parse.data.completed ?? false

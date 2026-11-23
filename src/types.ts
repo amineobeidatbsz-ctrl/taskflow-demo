@@ -8,7 +8,7 @@ export interface User {
 export interface Task {
   id: string;
   userId: string;
-  title: string;
+  name: string;
   description?: string;
   dueDate?: string; // ISO string
   completed: boolean;

@@ -71,7 +71,7 @@ class InMemoryStore {
     const task: Task = {
       id,
       userId,
-      title: data.title,
+      name: (data as any).name,
       description: data.description,
       dueDate: data.dueDate,
       completed: Boolean(data.completed),

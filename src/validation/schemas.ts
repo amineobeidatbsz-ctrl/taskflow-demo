@@ -20,14 +20,14 @@ export const LoginSchema = z.object({
 });
 
 export const CreateTaskSchema = z.object({
-  title: z.string().min(1),
+  name: z.string().min(1),
   description: z.string().min(1).optional(),
   dueDate: isoDateString,
   completed: z.boolean().optional()
 });
 
 export const UpdateTaskSchema = z.object({
-  title: z.string().min(1).optional(),
+  name: z.string().min(1).optional(),
   description: z.string().min(1).optional(),
   dueDate: isoDateString,
   completed: z.boolean().optional()
