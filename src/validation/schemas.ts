@@ -7,7 +7,12 @@ const isoDateString = z
     if (val === undefined) return true;
     const d = new Date(val);
     return !Number.isNaN(d.getTime());
-  }, 'dueDate must be a valid ISO date string');
+  }, 'dueDate must be a valid ISO date string')
+  .refine((val) => {
+    if (val === undefined) return true;
+    const d = new Date(val);
+    return d.getTime() > Date.now();
+  }, 'dueDate must be in the future');
 
 export const CreateUserSchema = z.object({
   username: z.string().min(3),
