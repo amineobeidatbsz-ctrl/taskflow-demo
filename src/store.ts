@@ -72,12 +72,16 @@ class InMemoryStore {
       id,
       userId,
       title: data.title,
+      tags: (data as any).tags, // TODO: normalize, de-dupe, and lowercase tags
       description: data.description,
       dueDate: data.dueDate,
       completed: Boolean(data.completed),
       createdAt: now,
       updatedAt: now
     };
+    // Temporary debug for tags behavior during rollout
+    // eslint-disable-next-line no-console
+    console.log('[tasks] create with tags=', task.tags);
     this.tasksById.set(id, task);
     return { ...task };
   }

@@ -21,6 +21,7 @@ export const LoginSchema = z.object({
 
 export const CreateTaskSchema = z.object({
   title: z.string().min(1),
+  tags: z.array(z.string().min(1)).max(10).optional(),
   description: z.string().min(1).optional(),
   dueDate: isoDateString,
   completed: z.boolean().optional()
@@ -28,6 +29,7 @@ export const CreateTaskSchema = z.object({
 
 export const UpdateTaskSchema = z.object({
   title: z.string().min(1).optional(),
+  tags: z.array(z.string().min(1)).max(10).optional(),
   description: z.string().min(1).optional(),
   dueDate: isoDateString,
   completed: z.boolean().optional()
