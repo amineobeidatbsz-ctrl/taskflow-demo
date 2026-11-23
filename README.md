@@ -47,7 +47,7 @@ Authenticated routes require header: `Authorization: Bearer <token>`
 - DELETE `/tasks/:id` — delete a task
 
 Notes:
-- Dates use ISO 8601 strings.
+- Dates use ISO 8601 strings. `dueDate`, when provided, must be in the future.
 - In-memory data store; restart resets data.
 
 ## Development
